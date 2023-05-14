@@ -3,10 +3,12 @@
 </template>
 
 <script setup>
+//Recive button text data from Keyboard Component
 const props = defineProps({
   text: String,
 });
 
+// Use defineEmit to pass clicked button text to Keyboard Component
 const emit = defineEmits(["btnClick"]);
 
 const btnClick = () => {

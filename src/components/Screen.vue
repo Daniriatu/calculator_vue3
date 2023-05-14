@@ -3,6 +3,7 @@
 </template>
 
 <script setup>
+// Recieve screen data from Calculator Component
 const props = defineProps({
   screen: {
     required: true,

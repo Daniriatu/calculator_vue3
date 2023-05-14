@@ -40,6 +40,7 @@
 <script setup>
 import Button from "./Button.vue";
 
+// Use emit to pass clicked button text to Calculator Component
 const emit = defineEmits(["btnClick"]);
 
 const btnClick = (btn) => {
@@ -65,7 +66,7 @@ const btnClick = (btn) => {
 
 .btn-operator,
 .btn-equal {
-  background-color: #f69232;
+  background-color: #3294f6;
   color: #fff;
   font-size: 48px;
   font-family: "Courier New", Courier, monospace;

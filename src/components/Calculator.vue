@@ -40,64 +40,76 @@ const btnClear = () => {
   clear();
 };
 
+//+/- button
 const btnChangeSymbol = () => {
   if (screen.value !== "ERROR") {
     screen.value = parseFloat(screen.value) * -1;
   }
 };
 
+//% button
 const btnPercentage = () => {
   if (screen.value !== "ERROR") {
     screen.value = parseFloat(screen.value) * 0.01;
   }
 };
 
+//Show text on the screen
 const appendText = (number) => {
+  //Decide if a new calculate process started
   if (is_new_input.value) {
     clear();
     is_new_input.value = false;
   }
+  //Clean the 0 before the input whole number
   if (screen.value === "0" && number !== ".") {
     screen.value = "";
   }
+  //Set all clear to clear
   if (number != "0") {
     clearButton.value = "C";
   }
-  if (number === "." && screen.value.indexOf(".") !== -1) {
+  //make sure there's only one "."
+  if (number === "." && screen.value.indexOf(".") > 0) {
     return;
   }
+  //Maximun amount of input number is 7
   if (screen.value.length < 7) {
     screen.value += number;
   }
 };
 
+//Clear wrong input number
 const clear = () => {
   screen.value = "0";
   clearButton.value = "AC";
 };
 
+//Reset all the data
 const reset = () => {
   left.value = 0;
   operateKey.value = "";
   is_new_input.value = true;
 };
 
+//Get operators
 const btnOperator = (keyValue) => {
   if (screen.value !== "ERROR") {
     calculate();
     left.value = parseFloat(screen.value);
+    console.log(left.value);
     operateKey.value = keyValue;
     is_new_input.value = true;
   }
 };
 
 function calculate() {
-  // 暂存右值
+  // Store the temp value
   const right = parseFloat(screen.value);
+  console.log(right);
 
-  // 尝试计算
   try {
-    // 如果有运算符且不需要输入新值才计算
+    // Calculate only if there is an operator and no new input number
     if (operateKey.value !== "" && is_new_input.value !== true) {
       let answer;
       switch (operateKey.value) {
@@ -120,6 +132,7 @@ function calculate() {
         default:
           answer = "ERROR";
       }
+      // Decide output result
       if (answer !== "ERROR") {
         screen.value = answer;
       } else {
@@ -127,6 +140,7 @@ function calculate() {
       }
       clearButton.value = "AC";
     }
+    //Catch unexpected error and output to console.
   } catch (e) {
     screen.value = "ERROR";
     clearButton.value = "AC";
