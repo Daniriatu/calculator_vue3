@@ -95,7 +95,7 @@ const reset = () => {
 //Get operators
 const btnOperator = (keyValue) => {
   if (screen.value !== "ERROR") {
-    calculate();
+    reset();
     left.value = parseFloat(screen.value);
     console.log(left.value);
     operateKey.value = keyValue;
